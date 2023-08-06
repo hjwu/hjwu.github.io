@@ -1,0 +1,162 @@
+# Site
+repository: hjwu/hjwu.github.io
+favicon: images/favicon.ico
+
+# Content configuration version
+version: 1
+
+# Personal info
+name: Hsin Jung Wu
+title: Game mathematician / Backend Developer
+email: hsinjungwu+resume@gmail.com
+website: hjwu.me
+
+# Dark Mode (true/false/never)
+darkmode: false
+
+# Social links
+# twitter_username: facespics
+github_username: hsinjungwu
+# stackoverflow_username: "00000001"
+# dribbble_username: jekyll
+# facebook_username: jekyll
+# flickr_username: jekyll
+# instagram_username: jameswgrant
+linkedin_username: hsinjungwu
+# xing_username: jekyll
+# pinterest_username: jekyll
+# youtube_username: globalmtb
+# googleplus_username: +jekyll
+# orcid_username: 0000-0000-0000-0000
+
+# Additional icon links
+# additional_links:
+# - title: itsgoingto.be
+#   icon: fas fa-globe
+#   url: https://www.itsgoingto.be
+# - title: another link
+#   icon: font awesome brand icon name (eg. fab fa-twitter) (https://fontawesome.com/icons?d=gallery&m=free)
+#   url: Link url (eg. https://google.com)
+
+# Google Analytics and Tag Manager
+# Using more than one of these may cause issues with reporting
+# gtm: "GTM-0000000"
+# gtag: "UA-00000000-0"
+# google_analytics: "UA-00000000-0"
+
+# About Section
+# about_title: About Me
+about_profile_image: images/profile.jpg
+about_content: | # this will include new lines to allow paragraphs
+  使用 C#, GOLANG 獨立開發超過 20 款遊戲數學模型，涵蓋老虎機 (Line Game、Way/Megaways Game、Cluster Pay、Any Pay) 和棋牌遊戲 (牛牛、博丁、鬥地主)。
+
+content:
+# - title: Projects # Title for the section
+#   layout: list # Type of content section (list/text)
+#   content:
+#     - layout: top-middle
+#       title: Super awesome project
+#       link: github.com/sproogen
+#       # link_text: Project Website
+#       additional_links:
+#         - title:  sproogen/modern-resume-theme
+#           icon: fab fa-github
+#           url: github.com/sproogen/modern-resume-theme
+#         # - title:  Github page for project (eg. sproogen/modern-resume-theme)
+#         #   icon: fab fa-github
+#         #   url: Link to project (eg. sproogen.github.io/modern-resume-theme)
+#       quote: >
+#         This is probably one of the greatest apps ever created, if you don't agree you're probably wrong.
+#       description: | # this will include new lines to allow paragraphs
+#         I started this project as a way if learning <mark>React</mark> and it has since grown into a fully fledged app. I have learned many skills through this and been I'm very proud of having this in my portfolio. If you don't have a project as awesome as this I would advise you make one.
+
+  - title: Experience # Title for the section
+    layout: list # Type of content section (list/text)
+    content:
+      - layout: left
+        title: 長青資訊
+        # link: boringcompany.com
+        # link_text: boringcompany.com
+        sub_title: 遊戲後端工程師
+        caption: 2021/09 - Present
+        # quote: >
+        #  Solving 21st century problems by diging holes and making game changing products like the *not a flamethrower*
+        description: | # this will include new lines to allow paragraphs
+            1. 與數值團隊合作開發超過 10 款老虎機。主要負責提供玩法設計發想並協助建立數學模型。
+            2. 針對特定競品開發簡易調研工具，讓其他同仁也能提供數據供數值團隊分析。
+            3. 優化後端遊戲架構，簡化開發流程。
+            4. 建立各種彩票試算模組，如快三、快樂八、牛牛、時時彩等等。
+      - layout: left
+        title: 風采有限公司
+        sub_title: 機率工程師
+        caption: 2021/04 - 2021/09
+        description: |
+            使用 GOLANG 獨立開發完整鬥地主模型與機器人對打策略
+      - layout: left
+        title: 長青資訊
+        sub_title: 機率工程師
+        caption: 2017/12 - 2021/04
+        description: |
+            1. 擔任超過 20 款遊戲主數值。負責產品調研、玩法設計、模型建立與機率模組產出。
+            2. 重構機率模組程式，降低新人學習曲線。
+            3. 開發內部分析工具，可客製化產生各遊戲模型相關統計數據。
+            4. 協助風控團隊分析 RTP, 玩家行為是否異常。
+      - layout: left
+        title: 博暉科技
+        sub_title: 系統分析師
+        caption: 2017/01 - 2017/12
+        description: |
+            1. 帶領 3~5 人團隊
+            2. 以 C#(Windows Form)、T-SQL 搭配 DevExpress UI Controls 開發金融商品、資產管理等相關軟體。
+      - layout: left
+        title: 南山人壽
+        sub_title: 專員
+        caption: 2016/09 - 2017/01
+        description: |
+            規劃風險管理系統。
+      - layout: left
+        title: 博暉科技
+        sub_title: 技術副理
+        caption: 2012/12 - 2016/09
+        description: |
+            1. 帶領 3~5 人團隊
+            2. 以 C#(Windows Form)、T-SQL 搭配 DevExpress UI Controls 開發金融商品、資產管理等相關軟體。
+
+  - title: Education
+    layout: list
+    content:
+      - layout: left
+        title: 台灣大學
+        caption: 2004 - 2006
+        sub_title: 數學研究所碩士班
+      - layout: right
+        title: 交通大學
+        caption: 2000 - 2004
+        sub_title: 應用數學系
+        
+
+#  - title: A Little More About Me
+#    layout: text
+#    content: | # this will include new lines to allow paragraphs
+#      Alongside my interests in networks and software engineering some of my other interests and hobbies are:
+#      - Rock climbing
+#      - Gaming
+#      - Knitting
+#      - [Becoming a ninja](https://www.youtube.com/watch?v=vtg4o__aRMg)
+#
+#      Look at this cool image  
+#      ![Trees](/modern-resume-theme/images/landscape-trees.jpg "Trees")
+
+# Footer
+footer_show_references: true
+# references_title: References on request (Override references text)
+
+# Build settings
+remote_theme: sproogen/resume-theme
+
+sass:
+  sass_dir: _sass
+  style: compressed
+
+plugins:
+ - jekyll-seo-tag
