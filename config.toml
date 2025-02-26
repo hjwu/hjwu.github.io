@@ -2,9 +2,9 @@
 # Site Settings
 
 baseURL = "https://hjwu.github.io/"
-title = "8128"
+title = "在沒有你的城市"
 languageCode = "en"
-hasCJKLanguage = true
+hasCJKLanguage = false
 # Copyright information (Markdown supported)
 copyright = "[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/deed.en)"
 
@@ -18,11 +18,15 @@ newContentEditor = ""
 defaultContentLanguage = "en"
 defaultContentLanguageInSubdir = false
 
-# Pluralize titles in lists?
+# Title case style
+# https://gohugo.io/getting-started/configuration/#configure-title-case
+titleCaseStyle = "none"
+
+# Pluralize list titles
 pluralizeListTitles = false
 
 # The length of text in words to show in summary
-summaryLength = 0
+summaryLength = 42
 
 # Enable Emoji emoticons support?
 enableEmoji = false
@@ -35,11 +39,6 @@ enableGitInfo = false
 
 # Enable generation of `robots.txt` file?
 enableRobotsTXT = true
-
-# Number of items per page in paginated
-# lists (valid for the `posts` homepage
-# layout in MemE)
-paginate = 10
 
 # URL related
 disablePathToLower = false
@@ -59,6 +58,14 @@ tag = "tags"
 # Modified date
 [frontmatter]
 lastmod = ["lastmod", ":git", ":fileModTime", ":default"]
+
+[pagination]
+disableAliases = false
+# Number of items per page in paginated
+# lists (valid for the `posts` homepage
+# layout in MemE)
+pagerSize = 5
+path = 'page'
 
 # Markdown renderer
 [markup]
@@ -91,20 +98,9 @@ startLevel = 2
 endLevel = 6
 ordered = true
 
-# Author’s information
-[author]
-# Name
-name = "@hjwu"
-# Email
-# email = "hsinjungwu@gmail.com"
-# Motto or introduction
-# motto = "Viva La Vida"
-# Avatar
-# avatar = "/icons/apple-touch-icon.png"
-# Personal website, default: baseURL
-# website = "https://hjwu.github.io/"
-# Twitter
-# twitter = "reuixiy"
+# HTML minify
+[minify.tdewolff.html]
+keepWhitespace = false
 
 # Related content
 [related]
@@ -141,9 +137,17 @@ baseName = "rss"
 mediaType = "application/json"
 baseName = "search"
 
+# Search index for Algolia
+[outputFormats.Algolia]
+mediaType = "application/json"
+baseName = "algolia"
+isPlainText = true
+notAlternative = true
+
 # Hugo’s output control
 [outputs]
 page = ["HTML"]
+# home = ["HTML", "SectionsAtom", "SectionsRSS", "SearchIndex", "Algolia"]
 home = ["HTML", "SectionsAtom", "SectionsRSS", "SearchIndex"]
 section = ["HTML"]
 taxonomy = ["HTML"]
@@ -172,7 +176,7 @@ limit = -1
 
 # The configuration instructions in the
 # menu are as follows:
-# url           URL
+# pageref/url   internal/external URL
 # name          Text (won’t display if it
 #               is left empty("") or does
 #               not exist)
@@ -191,38 +195,46 @@ limit = -1
 [menu]
 ## Menu bar
 # [[menu.main]]
-#     url = "/"
+#     pageref = "/"
 #     name = "Home"
 #     weight = 1
 #     pre = "internal"
 #     post = "home"
 [[menu.main]]
-url = "/posts/"
-name = "流水"
+pageref = "/posts/"
+name = "❤️8128"
 weight = 2
 pre = "internal"
 post = "th"
 # [[menu.main]]
-# url = "/categories/"
+# pageref = "/categories/"
 # name = "Categories"
 # weight = 3
 # pre = "internal"
 # post = "th"
 # [[menu.main]]
-# url = "/tags/"
+# pageref = "/tags/"
 # name = "Tags"
 # weight = 4
 # pre = "internal"
 # post = "tags"
 # [[menu.main]]
-# url = "/about/"
+# pageref = "/about/"
 # name = "About"
-# weight = 6
+# weight = 5
 # pre = "internal"
 # post = "user-circle"
 # [[menu.main]]
-#    weight = 7
-#    identifier = "theme-switcher"
+# weight = 6
+# identifier = "theme-switcher"
+# [[menu.main]]
+# weight = 7
+# identifier = "lang-switcher"
+# [[menu.main]]
+# weight = 8
+# identifier = "search"
+# post = "search"
+
 
 ##########################################
 # Theme Settings
@@ -232,6 +244,9 @@ post = "th"
 # Header
 
 enableHeader = true
+
+enableHeaderAutoHide = false
+# Note: works for header layout flex only
 
 displayHeaderInHome = true
 # Note: invalid for header layout flex
@@ -302,9 +317,9 @@ activeInSection = false
 
 homeLayout = "page"
 
-homePoetry = []
 ## Poetry
 # Verse (Markdown supported)
+homePoetry = []
 # Padding of links at the bottom
 # Unit: em
 homeLinksPadding = 1
@@ -321,6 +336,12 @@ homeDescription = ""
 homeKeywords = ""
 homeLinksDelimiter = ""
 
+## Posts
+enableHideInHomepage = false
+# Note: enable `hideInHomepage` front
+#       matter support (disabled by
+#       default for performance concern)
+
 
 ######################################
 # Site Info
@@ -332,11 +353,11 @@ siteDescription = "MemE is a powerful and highly customizable GoHugo theme for p
 # Note: used for HTML head meta, JSON-LD,
 #       Open Graph, Atom, RSS
 
-siteCreatedTime = "2020-08-01T20:17:43+00:00"
+siteCreatedTime = "2025-01-01T00:00:00+80:00"
 # ATTENTION: keep this format, change
 #            the number
 
-# siteTwitter = "reuixiy"
+siteTwitter = "reuixiy"
 # Note: used for Twitter Cards
 
 
@@ -388,7 +409,7 @@ enableTree = true
 #            `categoryBy` to `sections`
 
 # Display title of posts?
-displayPosts = false
+displayPosts = true
 
 # Display count of posts under each
 # category?
@@ -475,7 +496,7 @@ limitEntriesLimit = -1
 # Atom & RSS
 
 # Include full content?
-includeContent = false
+includeContent = true
 # Note: If false, only the summary of
 #       the post will be included. The
 #       summary, Hugo automatically
@@ -523,7 +544,7 @@ hideThemeToggleInHome = false
 #       Unless you enable the following
 #       option.
 
-overrideSystemPreferences = true
+overrideSystemPreferences = false
 
 
 ######################################
@@ -531,24 +552,29 @@ overrideSystemPreferences = true
 
 # Note: go to https://realfavicongenerator.net/
 #       to generate related icons and
-#       files, unzip after downloading,
-#       and keep only android-chrome-512x512.png,
-#       apple-touch-icon.png, mstile-150x150.png,
-#       safari-pinned-tab.svg, favicon.ico,
-#       site.webmanifest these files,
-#       delete the rest. Then move
-#       these files to the ~/blog/static/icons/
-#       directory, move favicon.ico,
-#       site.webmanifest to the ~/blog/static/
-#       directory, and finally rename
-#       site.webmanifest to manifest.json,
-#       and check and modify related
-#       content (the path of the icons).
+#       files, unzip after downloading.
+#       Then move these files to the
+#       ~/blog/static/icons/ directory,
+#       move favicon.ico, site.webmanifest
+#       to the ~/blog/static/ directory,
+#       and finally rename site.webmanifest
+#       to manifest.json, and check
+#       and modify related content
+#       (the path of the icons).
+
+# ATTENTION: To check your favicon, plese
+#            go to https://realfavicongenerator.net/favicon-checker.
+#            If any problems are detected,
+#            check the filename differences
+#            between the generated files
+#            and the related files in the
+#            ~/blog/themes/meme/static/ directory.
+#            If there are any differences,
+#            it means some files may be outdated.
+#            Please create an issue if necessary.
 
 themeColor = "#fff"
 themeColorDark = "#16171d"
-safariMaskColor = "#2a6df4"
-msApplicationTileColor = "#fff"
 
 
 ######################################
@@ -587,7 +613,7 @@ enableServiceWorker = false
 ######################################
 # KaTeX (chemical equation supported)
 
-enableKaTeX = true
+enableKaTeX = false
 # Note: *global settings*
 #       `katex` in post’s Front Matter
 #       has a higher priority than here
@@ -627,6 +653,9 @@ enableComments = false
 #       `comments` in post’s Front Matter
 #       has a higher priority than here
 
+# directly load the comments after pages loaded
+autoLoadComments = false
+
 ## Disqus
 enableDisqus = false
 disqusShortname = ""
@@ -660,6 +689,81 @@ utterancesTheme = "github-light"
 utterancesThemeDark = "photon-dark"
 utterancesLabel = ""
 # Note: https://utteranc.es/
+
+## Gitalk
+enableGitalk = false
+gitalkClientID = "your_client_id"
+gitalkClientSecret = "your_client_secret"
+gitalkRepo = "your_repository"
+gitalkOwner = "your_gitalk_owner"
+gitalkAdmin = ["your_gitalk_admin"]
+
+# 1. default (`location.href`)
+# 2. pathname (`location.pathname`)
+# 3. hash (hash_filepath)
+# 4. custom:your_gitalk_id ("your_gitalk_id")
+gitalkID = "pathname"
+
+gitalkNumber = -1
+gitalkLables = ["Gitalk"]
+
+# 1. default (`document.title`)
+# 2. custom:your_gitalk_title ("your_gitalk_title")
+gitalkTitle = "default"
+
+# 1. default (`location.href` + header.meta[description])
+# 2. href (`location.href`)
+# 3. custom:your_gitalk_body ("your_gitalk_body")
+gitalkBody = "default"
+
+# 1. default (`navigator.language || navigator.userLanguage`)
+# 2. Support [en, zh-CN, zh-TW, es-ES, fr, ru, de, pl, ko, fa, ja]
+gitalkLanguage = "en"
+
+gitalkDistractionFreeMode = false
+gitalkPerPage = 10
+gitalkPagerDirection = "last"
+gitalkCreateIssueManually = false
+gitalkProxy = "https://cors-anywhere.azm.workers.dev/https://github.com/login/oauth/access_token"
+gitalkStaggerDelayBy = 150
+gitalkAppearAnimation = "accordionVertical"
+gitalkEnterAnimation = "accordionVertical"
+gitalkLeaveAnimation = "accordionVertical"
+gitalkEnableHotKey = true
+# Note: https://github.com/gitalk/gitalk
+
+## Giscus
+enableGiscus = false
+giscusRepo = "[ENTER repo/you/want HERE]"
+giscusRepoId = "[ENTER REPO ID HERE]"
+giscusCategory = "[ENTER CATEGORY NAME HERE]"
+giscusCategoryId = "[ENTER CATEGORY ID HERE]"
+giscusMapping = "pathname"
+giscusStrict = false
+giscusReactionsEnabled = true
+giscusEmitMetaData = false
+giscusInputPosition = "top"
+giscusTheme = "light"
+giscusThemeDark = "dark"
+giscusLang = "en"
+# Note: https://giscus.app
+
+# Remark42
+enableRemark42 = false
+remark42Host = ""
+remark42SiteId = "remark"
+remark42Url = ""
+remark42Components = ["embed"]
+remark42MaxShownComments = 15
+remark42MaxLastComments = 15
+remark42Theme = "light"
+remark42PageTitle = ""
+remark42Locale = "en"
+remark42ShowEmailSubscription = true
+remark42ShowRssSubscription = true
+remark42SimpleView = false
+remark42NoFooter = false
+# Note: https://remark42.com/docs/configuration/frontend/
 
 
 ######################################
@@ -696,6 +800,18 @@ enableGoogleAutoAds = false
 ## Ad Units
 enableGoogleAdUnits = false
 googleAdSlot = ""
+googleAdSlotInArticle = ""
+googleAdSlotAutoRelaxed = ""
+
+
+######################################
+# Yandex.Metrika
+# https://metrika.yandex.ru/
+
+# Note: render only in production
+#       environment
+
+yandexMetrikaId = ""
 
 
 ######################################
@@ -731,7 +847,7 @@ original = true
 ######################################
 # Post Description
 
-displayPostDescription = true
+displayPostDescription = false
 
 
 ######################################
@@ -746,7 +862,7 @@ enablePostMetaInHome = false
 # Note: valid for the `posts` and
 #       `page` homepage layout only
 
-postMetaDateFormat = "2006.01.02"
+postMetaDateFormat = "2006.1.2"
 # ATTENTION: be sure to follow the
 #            specified format
 #            https://gohugo.io/functions/format/
@@ -807,6 +923,9 @@ linkHeadingsToTOC = true
 # Headings Anchor
 
 enableHeadingsAnchor = true
+# Note: *global settings*
+#       `anchor` in post’s Front Matter
+#       has a higher priority than here
 
 # Level range of headings
 headingsOpt = "1-6"
@@ -833,7 +952,7 @@ enableAnchorAutoHide = true
 
 enableCaption = true
 
-captionPrefix = "◎ "
+captionPrefix = "※ "
 
 
 ######################################
@@ -903,6 +1022,11 @@ insertHrBySelf = true
 
 
 ######################################
+# Scrollbar
+customizeScrollbar = true
+
+
+######################################
 # Typography
 
 ######################################
@@ -953,7 +1077,7 @@ fontsLink = "https://fonts.googleapis.com/css2?family=IBM+Plex+Serif:ital,wght@0
 ######################################
 ## Font Size (unit: px)
 
-fontSize = 20
+fontSize = 18
 
 ######################################
 ## Tab Size
@@ -1042,7 +1166,7 @@ enableChinesePunctuationGlyphCorrection = false
 
 enablePostCopyright = false
 
-displayPostCopyright = true
+displayPostCopyright = false
 # Note: *global settings*
 #       `displayCopyright` in post’s Front Matter
 #       has a higher priority than here
@@ -1066,27 +1190,28 @@ badgeTitlePrefix = "Updated @ "
 ######################################
 # Post Gitinfo
 
-enablePostGitInfo = true
+enablePostGitInfo = false
 
-displayPostGitInfo = true
+displayPostGitInfo = false
 # Note: *global settings*
 #       `gitinfo` in post’s Front Matter
 #       has a higher priority than here
 
 repoURL = ""
 repoEditURL = ""
+repoEditURLSuffix = ""
 
 gitIcon = "code-branch"
-displayCommitHash = true
+displayCommitHash = false
 
-displayCommitMessage = true
+displayCommitMessage = false
 msgIcon = "info"
 
-displayFeedback = true
+displayFeedback = false
 feedbackIcon = "question"
 feedbackText = "Feedback"
 
-displayEditLink = true
+displayEditLink = false
 editIcon = "edit"
 editText = "Edit Me?"
 
@@ -1094,25 +1219,40 @@ editText = "Edit Me?"
 ######################################
 # Post Share
 
-enablePostShare = true
+enablePostShare = false
 
-displayPostShare = true
+displayPostShare = false
 # Note: *global settings*
 #       `share` in post’s Front Matter
 #       has a higher priority than here
 
 displayShareOnText = false
 
-shareOnTwitter = false
-shareOnFacebook = false
-shareOnLinkedIn = false
-shareOnTelegram = false
-shareOnWeibo = false
-shareOnDouban = false
-shareOnQQ = false
-shareOnQzone = false
+postShareItems = [
+    "facebook",
+    "mastodon",
+    "fediverse",
+    "twitter",
+    "linkedin",
+    "telegram",
+    "weibo",
+    "douban",
+    "qq",
+    "qzone",
+    "pocket",
+    "hackernews",
+    "qrcode",
+    "email",
+]
 
-shareViaQRCode = false
+# Fetch fediverse instances list for
+# input suggestions
+fetchFediverseInstances = false
+# Note: Recommended when using mastodon
+#       or fediverse share items. This will
+#       cause a list of instances to be
+#       downloaded at build time. There
+#       might be build delays.
 
 
 ######################################
@@ -1182,6 +1322,8 @@ enableBackToTopAutoHide = true
 
 displayBackToTopInHome = true
 
+displayBackToTopOnMobile = false
+
 backToTopIcon = "arrow-up"
 
 
@@ -1194,6 +1336,7 @@ displayFooter = true
 
 displayFooterInHome = true
 
+displayCopyleftSymbol = false
 displayCopyrightSymbol = true
 
 displaySiteCreatedYear = true
@@ -1204,6 +1347,8 @@ iconBetweenYearAndAuthor = "heart"
 iconColor = "#f06292"
 # Enable heartbeat animation?
 iconAnimation = true
+
+displaySiteAuthorName = true
 
 # Display links to Hugo and MemE?
 displayPoweredBy = true
@@ -1258,9 +1403,21 @@ enableCopyAutoHide = true
 ######################################
 # Fingerprinting and SRI
 
-enableFingerprint = true
 # Note: valid for CSS and JS generated
 #       by MemE only
+
+enableFingerprint = true
+
+enableSRI = false
+# Note: subresource integrity will
+#       block MemE CSS and JS on third
+#       party websites like Google
+#       Translate. To prevent this,
+#       your server has to send the
+#       following header for CSS and
+#       JS requests:
+#
+#       Access-Control-Allow-Origin: *
 
 
 ######################################
@@ -1300,10 +1457,28 @@ enableInstantPage = true
 # Lunr search
 
 # Note: This requires SearchIndex
-# output to be enabled.
+#       output to be enabled.
 
 enableLunrSearch = true
 # Note: https://lunrjs.com/
+
+
+######################################
+# Algolia search
+
+# Note: This requires Algolia
+#       output to be enabled.
+#       And you need to upload the
+#       generated algolia.json to
+#       Algolia every time you rebuild
+#       your site.
+
+enableAlgoliaSearch = false
+
+algoliaAppId = ""
+algoliaApiKey = ""
+algoliaIndexName = ""
+# Note: https://www.algolia.com/
 
 
 ######################################
@@ -1315,3 +1490,56 @@ fofVideoWebm = ""
 fofVideoMp4 = ""
 # Note: you can leave these two
 #       options empty("")
+
+
+######################################
+# Customize host for third-party libraries
+
+[params.lib]
+host = "https://cdn.jsdelivr.net"
+# Note: set it to root("/") and set
+#       the path below if you want to host
+#       the lib directly from “local”.
+#       I.e. set path to "js/lib.min.js",
+#       and put this file to your
+#       /static/js/lib.min.js
+[params.lib.path]
+clipboard = "/npm/clipboard-polyfill@2.8.6/dist/clipboard-polyfill.min.js"
+instantsearch = "/npm/instantsearch.js@2/dist/instantsearch.min.js"
+gitalk = "/npm/gitalk@1/dist/gitalk.min.js"
+gitalk_css = "/npm/gitalk@1/dist/gitalk.css"
+instantpage = "/npm/instant.page@5.1.0/instantpage.min.js"
+katex = "/npm/katex@0.13.0/dist/katex.min.js"
+katex_css = "/npm/katex@0.13.0/dist/katex.min.css"
+katex_mhchem = "/npm/katex@0.13.0/dist/contrib/mhchem.min.js"
+katex_auto_render = "/npm/katex@0.13.0/dist/contrib/auto-render.min.js"
+lunr = "/npm/lunr@2.3.9/lunr.min.js"
+lunr_tinyseg = "/npm/lunr-languages@1.4.0/tinyseg.js"
+lunr_stemmer = "/npm/lunr-languages@1.4.0/min/lunr.stemmer.support.min.js"
+lunr_lang = "/npm/lunr-languages@1.4.0/min/lunr.de.min.js"
+mathjax = "/npm/mathjax@3.1.2/es5/tex-mml-chtml.js"
+medium_zoom = "/npm/medium-zoom@latest/dist/medium-zoom.min.js"
+mermaid = "/npm/mermaid@8.8.3/dist/mermaid.min.js"
+qrcode = "/npm/qrcode-generator@1.4.4/qrcode.min.js"
+valine = "/npm/valine@1.4.14/dist/Valine.min.js"
+busuanzi = "https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"
+utterances = "https://utteranc.es/client.js"
+
+
+######################################
+# Author’s information
+[params.author]
+# Name
+name = "@hjwu"
+# # Email
+# email = "reuixiy@gmail.com"
+# # Motto or introduction
+# motto = "Viva La Vida"
+# # Avatar
+# avatar = "/icons/apple-touch-icon.png"
+# # Personal website, default: baseURL
+# website = "https://io-oi.me/"
+# # Twitter
+# twitter = "reuixiy"
+# # Fediverse
+# fediverse = "@reuixiy@bird.makeup"
