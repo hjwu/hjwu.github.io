@@ -1,8 +1,10 @@
 baseURL = "https://hjwu.github.io/"
 languageCode = "zh-Hans"
 theme = "moments"
-paginate = 10
-paginatePath = '.'
+
+[pagination]
+pagerSize = 10
+path = "page"
 
 [markup]
 [markup.highlight]
