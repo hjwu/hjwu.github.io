@@ -3,7 +3,7 @@ languageCode = "zh-Hans"
 theme = "moments"
 
 [pagination]
-pagerSize = 10
+pagerSize = 8
 path = "page"
 
 [markup]
@@ -15,7 +15,7 @@ style = "pastie"
 tabWidth = 4
 
 [params]
-title = "陳馬尼 我想你"
+title = "🌈 陳馬尼 我想你"
 signature = "I Love You 8128 times"
 # cover = "https://cdn.pixabay.com/photo/2018/03/13/22/53/puzzle-3223941_1280.jpg"
 
